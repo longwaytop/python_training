@@ -39,3 +39,11 @@ class ContactHelper:
         wd.find_element_by_name("email3").send_keys(contact.third_email)
         # submit contact creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+
+    def delete_first_contact(self):
+        wd = self.app.wd
+        # select first contact
+        wd.find_element_by_name("selected[]").click()
+        # submit deletion
+        wd.find_element_by_xpath("// div[ @ id = 'content'] / form[2] / div[2] / input").click()
+        wd.switch_to_alert().accept()
