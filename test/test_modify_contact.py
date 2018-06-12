@@ -1,10 +1,15 @@
 from model.contact import Contact
 
 
-def test_modify_first_contact(app):
+def test_modify_contact_name(app):
     app.open_home_page()
-    app.contact.modify_first_contact(Contact(first_name="edited_first_name", last_name="edited_last_name",
-                                           address="edited_adress", home_phone="edited_home_phone",
-                                           mobile_phone="edited_mobile_phone", work_phone="edited_mobile_phone",
-                                           fax="edited_fax", first_email="edited_first_email", second_email="edited_second_email",
-                                           third_email="edited_third_email",))
+    if app.contact.count() == 0:
+        app.contact.create_contact(Contact(first_name="tested_contact_name"))
+    app.contact.modify_first_contact(Contact(first_name="modified_first_name"))
+
+
+def test_modify_contact_address(app):
+    app.open_home_page()
+    if app.contact.count() == 0:
+        app.contact.create_contact(Contact(first_name="tested_contact_name"))
+    app.contact.modify_first_contact(Contact(address="modified_address"))
