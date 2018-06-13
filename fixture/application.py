@@ -13,11 +13,8 @@ class Application:
 
     def open_home_page(self):
         wd = self.wd
-        wd.get("http://localhost/addressbook/")
-
-    def return_to_home_page(self):
-        wd = self.wd
-        wd.find_element_by_link_text("home page").click()
+        if not (wd.current_url.endswith("http://localhost/addressbook/") and len(wd.find_element_by_link_text("add_new")) > 0):
+            wd.get("http://localhost/addressbook/")
 
     def destroy(self):
         self.wd.quit()
