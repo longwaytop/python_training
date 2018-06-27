@@ -27,6 +27,7 @@ class ContactHelper:
         self.change_field_value("email", contact.first_email)
         self.change_field_value("email2", contact.second_email)
         self.change_field_value("email3", contact.third_email)
+        self.change_field_value("phone2", contact.secondary_phone)
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
@@ -83,7 +84,7 @@ class ContactHelper:
                 all_phones = cell[5].text.splitlines()
                 self.contact_cache.append(Contact(first_name=fname, last_name=lname, id=id,
                                                   home_phone=all_phones[0], mobile_phone=all_phones[1],
-                                                  work_phone=all_phones[2], fax=all_phones[3]))
+                                                  work_phone=all_phones[2], secondary_phone=all_phones[3]))
         return list(self.contact_cache)
 
     def open_contact_to_edit_by_index(self, index):
@@ -112,4 +113,4 @@ class ContactHelper:
         secondaryphone = wd.find_element_by_name("phone2").get_attribute("value")
         return Contact(first_name=fname, last_name=lname, id=id,
                        home_phone=homephone, work_phone=workphone,
-                       mobile_phone=mobilephone, fax=secondaryphone)
+                       mobile_phone=mobilephone, secondary_phone=secondaryphone)
